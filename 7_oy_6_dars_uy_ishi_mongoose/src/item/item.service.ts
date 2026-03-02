@@ -19,27 +19,28 @@ export class ItemService {
     return await this.itemModel.find().exec()
   }
 
-  async findOne(id: number) {
-    const foundedItem = await this.itemModel.findById(id).exec()
+  async findOne(_id: string) {
+
+    const foundedItem = await this.itemModel.findById(_id).exec()
 
     if(!foundedItem) throw new NotFoundException()
 
     return foundedItem
   }
 
-  async update(id: number, updateItemDto: UpdateItemDto) {
-    const foundedItem = await this.itemModel.findById(id).exec()
+  async update(_id: string, updateItemDto: UpdateItemDto) {
+    const foundedItem = await this.itemModel.findById(_id).exec()
 
     if(!foundedItem) throw new NotFoundException()
 
-    return await this.itemModel.findByIdAndUpdate(id, updateItemDto, {new: true}).exec()
+    return await this.itemModel.findByIdAndUpdate(_id, updateItemDto, {new: true}).exec()
   }
 
-  async remove(id: number) {
-    const foundedItem = await this.itemModel.findById(id).exec()
+  async remove(_id: string) {
+    const foundedItem = await this.itemModel.findById(_id).exec()
 
     if(!foundedItem) throw new NotFoundException()
 
-    return await this.itemModel.findByIdAndDelete(id).exec()
+    return await this.itemModel.findByIdAndDelete(_id).exec()
   }
 }
